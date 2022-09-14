@@ -1,5 +1,7 @@
 /*❗❗ MAKE SURE TO RETURN ALL OF THE ANSWERS ON THESE TASKS, IF YOU DON'T, THE AUTOGRADER WILL NOT WORK ❗❗*/
 
+const { createTSUnionType } = require("@babel/types");
+
 /*When doing these tasks, we recommend using console.log to test the output of your code to make sure it works correctly.*/
 
 ///////////////Menu Items (MVP)///////////////////
@@ -16,10 +18,19 @@ The function should:
 */
 
 
-function createMenuItem(/*Your code here*/){
-  /*Your code here*/
+
+
+function createMenuItem(name, price, category) {
+   const thing = {
+    name: name,
+    price: price,
+    category: category,
+   };
+   return thing;
 }
 
+//let tacos = createMenuItem("tacos", 8, "lunch");
+//console.log(createMenuItem("tacos", 8, "lunch"));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1b (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -32,6 +43,9 @@ Test your createMenuItems function by doing the following:
   For example: createMenuItem("pizza",5,"lunch") would return this as the object: {name:"Pizza",price:5,category:"lunch"}
 */
 
+createMenuItem("pizza", 5, "Lunch");
+createMenuItem("Hamburger", 12000, "Dessert");
+createMenuItem("lizard", 1, "Breakfast");
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -51,9 +65,17 @@ const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
-  
+  discount: function(status) {
+    if (status === "teacher" ||status === "student") {
+      return 13.5;
+    }
+    else if (status === "public") {
+      return 16.2;
+    }
+  }
 }
 
+//console.log(burger.discount("public"));
 
 
 ///////////////Reviews (MVP)///////////////////
@@ -73,7 +95,7 @@ Using the reviews array above:
   1. log only Julius' feedback to the console - no function needed 
 */
 
-
+//console.log(reviews[5].feedback)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4 (not auto-tested): 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Reyna's feedback is missing! Use what you know to do the following: (no function needed) 
@@ -81,7 +103,8 @@ Reyna's feedback is missing! Use what you know to do the following: (no function
   2. log the reviews array to the console to check your work
 */
 
-
+reviews[7].feedback = "this place is chill with really cool people, great for getting work done on weekdays"
+//console.log(reviews[7].feedback)
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Write a function that creates an object with name, rating, feedback, add the new review to the end of an array and returns the resulting array. 
@@ -95,11 +118,20 @@ Use the addReview function below to do the following:
 */
 
 
-function addReview(/*Your Code Here */){
-  /*Your Code Here */
+function addReview(array, name, rating, feedback){
+  const thing = {
+    name: name,
+    rating: rating,
+    feedback: feedback,
+  };
+  array.push(thing);
+  return array;
 }
 
+addReview(reviews, "Billy", 2, "Lame food!");
 
+for(let i = 0; i < reviews.length; i++)
+console.log(reviews[i])
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Write a function to return a review based on the index of the review in the array.
@@ -112,11 +144,11 @@ Use the getReviewByIndex function below to do the following:
 */
 
 
-function getReviewByIndex(/*Your code here*/) {
-  /*Your code here*/
+function getReviewByIndex(array, index) {
+    return (array[index].name + " gave the restaurant a " + array[index].rating + " star review, and their feedback was: " + array[index].feedback);
 }
 
-  
+ return console.log(getReviewByIndex(reviews,0));
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Write a function to get information about the most recent (last) review called `getLastReview`
@@ -131,11 +163,11 @@ Use the getLastReview function below to do the following:
 */
 
 
-function getLastReview(/*Your code here*/) {
-  /*Your code here*/
+function getLastReview(array) {
+  return (array[array.length-1].name + " gave the restaurant a " + array[array.length-1].rating + " star review, and their feedback was: " + array[array.length-1].feedback);
 } 
 
-
+return console.log(getLastReview(reviews));
 
 ///////////////🍔☕️🍽 STRETCH🍔☕️🍽////////////////////
 
